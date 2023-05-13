@@ -1,11 +1,8 @@
-package com.examle.junit.services;
+package com.example.junit.launcher;
 
-import com.examle.junit.tests.UserServiceTest;
-import com.example.junit.service.UserService;
-import org.junit.platform.engine.discovery.DirectorySelector;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
-import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.TagFilter;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
@@ -25,7 +22,10 @@ public class TestLauncher {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
                 .request()
 //                .selectors(DiscoverySelectors.selectClass(UserServiceTest.class))
-                .selectors(DiscoverySelectors.selectPackage("com.examle.junit.tests"))
+                .selectors(DiscoverySelectors.selectPackage("com.example.junit.service"))
+                .filters(
+                        TagFilter.includeTags("login")
+                )
                 .build();
         launcher.execute(request, summaryGeneratingListener);
 
